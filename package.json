@@ -10,6 +10,7 @@
     "electron:start": "vite build && electron ."
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
