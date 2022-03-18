@@ -19,7 +19,6 @@ import Main from './components/Main.vue'
      display: grid;
      min-height: 97vh;
      min-width: 97vw;
-     border: solid red 1px;
      grid-template-rows: 1fr 10fr;
      grid-template-columns: 1fr 5fr;
      grid-template-areas: 'aside nav'
