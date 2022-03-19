@@ -1,14 +1,34 @@
 <script>
+ import Search from './pages/Search.vue'
+ import Requests from './pages/Requests.vue'
+ import Connected from './pages/Connected.vue'
+ import Files from './pages/Files.vue'
+ import Messages from './pages/Messages.vue'
+
  export default {
      data(){
 
+     },
+     components:{
+         Search,
+         Requests,
+         Connected,
+         Files,
+         Messages
+     },
+     methods:{
+     },
+     computed:{
+         page: function(){
+             return this.$store.state.page
+         }
      }
  }
 </script>
 
 <template>
     <div class="main">
-        Main
+        <search v-if="page=='search'"/>
     </div>
 </template>
 

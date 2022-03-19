@@ -12,8 +12,9 @@ library.add(far)
 
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch()
-
+import store from './store'
 createApp(App)
 // add font-awesome components
   .component("font-awesome-icon", FontAwesomeIcon)
+  .use(store)
   .mount('#app')

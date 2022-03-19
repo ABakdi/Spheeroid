@@ -27,6 +27,7 @@
 </template>
 
 <style scoped>
+
  .container{
      width: 97%;
      min-height: 95%;
@@ -34,6 +35,7 @@
      display: flex;
      flex-direction: column;
  }
+
  .search-bar{
      display: flex;
      flex-direction: row;
