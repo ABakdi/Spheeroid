@@ -14,7 +14,7 @@ import Main from './components/Main.vue'
     </div>
 </template>
 
-<style>
+<style scoped>
  .container{
      display: grid;
      min-height: 97vh;

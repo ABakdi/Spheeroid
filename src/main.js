@@ -12,6 +12,8 @@ library.add(far)
 
 import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch()
+
+// configure vuex
 import store from './store'
 createApp(App)
 // add font-awesome components

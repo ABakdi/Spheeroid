@@ -1,11 +1,11 @@
 <script>
- import AsideButton from './AsideButton.vue'
+ import sideNav from './sideNav.vue'
  export default {
      data(){
 
      },
      components:{
-         AsideButton
+         sideNav
      }
  }
 </script>
@@ -21,18 +21,8 @@
                 Shpeeroid
             </span>
         </div>
-        <div class="side-nav">
-            <aside-button title="Search" icon="magnifying-glass"
-                          class="side-nav-el"/>
-            <aside-button title="Requests" icon="code-pull-request"
-                          class="side-nav-el"/>
-            <aside-button title="Connected" icon="network-wired"
-                          class="side-nav-el"/>
-            <aside-button title="Files" icon="file-arrow-down"
-                          class="side-nav-el"/>
-            <aside-button title="Messages" icon="envelope"
-                          class="side-nav-el"/>
-        </div>
+
+        <side-nav/>
     </div>
 </template>
 
