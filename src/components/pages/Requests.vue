@@ -1,0 +1,152 @@
+<script>
+import XButton from "./elements/XButton.vue";
+import Panel from "./elements/Panel.vue";
+import {ref, reactive} from 'vue';
+ export default {
+     setup(){
+         let reqs = ref([
+             {
+                 id:'123-456-789-abcd',
+                 name: 'Xoid',
+                 timeout: 60000,
+                 status: "",
+                 type: "incoming"
+             },
+             {
+                 id:'123-9865-878-c98',
+                 name: 'alphoid',
+                 timeout: 60000,
+                 status: "",
+                 type: "outgoing"
+             },
+             {
+                 id:'123-456-abcd-fd88',
+                 name: 'astroid',
+                 timeout: 60000,
+                 status: "",
+                 type: "incoming"
+             },
+         ])
+         let filtered = ref(reqs.value)
+         return {reqs, filtered}
+     },
+
+     components: {
+         XButton,
+         Panel,
+     },
+     methods: {
+         Filter: function(e){
+             let filterQuery = e.target.value
+             this.filtered = this.reqs.filter((p)=>{
+                 return ~p.id.toLowerCase().indexOf(filterQuery) || ~p.name.toLowerCase().indexOf(filterQuery)
+             })
+         }
+     },
+     computed: {},
+};
+</script>
+
+<template>
+  <div class="container">
+    <div class="search-bar">
+        <input placeholder=" Filter" @input="Filter($event)" />
+    </div>
+    <div class="resaults">
+        <panel class="search-resault" v-for="peer in filtered" :color="peer.type == 'incoming'? 'prime':'sec'">
+            <template #main>
+                <div class="feature">
+                    <span class="key">UUID:</span>
+                    <span class="val">{{peer.id}}</span>
+                </div>
+                <div class="feature">
+                    <span class="key">Name:</span>
+                    <span class="val">{{peer.name}}</span>
+                </div>
+                <div class="feature">
+                    <span class="key">Timeout:</span>
+                    <span class="val">{{peer.timeout}}</span>
+                </div>
+                <div class="feature">
+                    <span class="key">Status:</span>
+                    <span class="val">{{peer.status}}</span>
+                </div>
+            </template>
+            <template #side>
+                    <x-button class="action" color="prime">accept</x-button>
+                    <x-button class="action" color="sec">ignore</x-button>
+            </template>
+        </panel>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+  .container {
+      width: 97%;
+      min-height: 95%;
+      padding: 1%;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .search-bar {
+      display: flex;
+      flex-direction: row;
+      width: 80%;
+      justify-content: space-between;
+      align-self: center;
+      flex: 1;/*FIXME: the search bar gets longer when view port width decreases*/
+  }
+
+  .search-bar input {
+      min-height: 100%;
+      width: 70%;
+      background-color: rgba(38, 40, 43, 1);
+      border: none;
+      color: rgba(95, 133, 219, 0.26);
+  }
+
+
+  .resaults {
+      width: 100%;
+      padding-top: 3%;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      align-self: center;
+      width: 80%;
+      flex: 25;
+  }
+
+ .search-resault{
+     width: 97%; /*FIXME: use flex properties instead of fixed width*/
+     margin-top: 3%;
+ }
+
+ .feature{
+     display: flex;
+     flex-direction: row;
+     margin: 0.5% 0 0.5% 0;
+ }
+ .key{
+     margin-right: 2%;
+     color: rgba(95, 133, 219, 1);
+ }
+ .val{
+     color: white;
+
+ }
+ .action-buttons{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+ .action{
+     width: 100%;
+     height: 35%;
+ }
+
+</style>

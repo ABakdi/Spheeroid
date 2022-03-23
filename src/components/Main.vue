@@ -29,6 +29,7 @@
 <template>
     <div class="main">
         <search v-if="page=='search'"/>
+        <requests v-else-if="page=='requests'"/>
     </div>
 </template>
 

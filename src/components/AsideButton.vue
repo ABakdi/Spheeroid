@@ -13,13 +13,15 @@
 </script>
 
 <template>
-    <div :class="['button', clicked? 'clicked' : '' ]">
-        <div class="icon">
-            <i :class="['fa-solid', 'fa-'.concat(icon)]"></i>
+    <div class="shell">
+        <div :class="['button', clicked? 'clicked' : '' ]">
+            <div class="icon">
+                <i :class="['fa-solid', 'fa-'.concat(icon)]"></i>
+            </div>
+            <span>
+                {{title}}
+            </span>
         </div>
-        <span>
-            {{title}}
-        </span>
     </div>
 </template>
 
@@ -33,29 +35,41 @@
      padding-left: 5%;
      filter: brightness(1.2);
      transition: background 1s, border 0.1s ease-in-out;
+     height: 99%;
  }
 
- div:hover{
+ .button:hover{
      background-color: rgba(95, 133, 219, 1);
      color: rgba(38, 40, 43, 1);
      cursor: pointer;
-     border-left: solid 2px black;
      filter: brightness(1);
  }
 
- .clicked{
+ .shell::after{
+     transition: all ease-in-out .2s;
+     background: none repeat scroll 0 0 #ffffff;
+     content: "";
+     display: block;
+     height: 1px;
+     width: 0;
+ }
+
+ .shell:hover::after{
+     width: 100%;
+ }
+
+ .clicked {
      background-color: rgba(95, 133, 219, 1);
      color: rgba(38, 40, 43, 1);
-     cursor: pointer;
-     border-bottom: solid 2px black;
-     filter: blur(0.4px);
+     border-left: solid 2px black;
+     filter: blur(0.45px);
  }
 
  span {
      padding-left: 5%;
  }
 
- .icon{
+ .icon {
      color: white;
      text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
  }

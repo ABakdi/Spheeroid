@@ -58,7 +58,6 @@
 
  .logo{
      width: 100%;
-     max-height: 100%;
  }
  
 
