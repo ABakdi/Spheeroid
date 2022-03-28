@@ -53,6 +53,13 @@
      width: 15%;
  }
 
+ .bottom{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     width: 100%;
+ }
+
  .prime{
      background-color: rgba(38, 40, 43, 0.7);
  }

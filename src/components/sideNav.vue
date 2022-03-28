@@ -35,17 +35,9 @@
 </template>
 
 <style>
- .side-bar{
-     max-width: 25vw;
-     height: 97vh;
-     background-color: rgba(38, 40, 43, 0.79);
-     padding-right: 2px;
- }
-
  .side-nav-el{
-     max-height: 15%;
+     height: 15%;
      max-width: 100%;
-     margin-bottom: 2px;
  }
 
  .side-nav{

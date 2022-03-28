@@ -79,15 +79,15 @@ import {ref, reactive} from 'vue';
       width: 80%;
       justify-content: space-between;
       align-self: center;
-      flex: 1;/*FIXME: the search bar gets longer when view port width decreases*/
+      flex: 8;
   }
 
-  .search-bar input {
-      min-height: 100%;
+  .search-bar > input {
       width: 70%;
       background-color: rgba(38, 40, 43, 1);
       border: none;
       color: rgba(95, 133, 219, 0.26);
+      align-self: stretch;
   }
 
   .search-button {
@@ -95,7 +95,6 @@ import {ref, reactive} from 'vue';
   }
 
   .resaults {
-      width: 100%;
       padding-top: 3%;
       display: flex;
       flex-direction: column;
@@ -103,7 +102,7 @@ import {ref, reactive} from 'vue';
       align-items: center;
       align-self: center;
       width: 80%;
-      flex: 25;
+      flex: 92;
   }
 
  .search-resault{

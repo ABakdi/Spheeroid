@@ -30,6 +30,8 @@
     <div class="main">
         <search v-if="page=='search'"/>
         <requests v-else-if="page=='requests'"/>
+        <connected v-else-if="page=='connected'"/>
+        <files v-else-if="page=='files'"/>
     </div>
 </template>
 

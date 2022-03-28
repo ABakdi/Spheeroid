@@ -18,7 +18,7 @@
             </div>
 
             <span class="title">
-                Shpeeroid
+                Spheeroid
             </span>
         </div>
 
@@ -32,19 +32,6 @@
      height: 97vh;
      background-color: rgba(38, 40, 43, 0.79);
      padding-right: 2px;
- }
-
- .side-nav-el{
-     height: 20%;
-     max-width: 100%;
-     margin-bottom: 2px;
- }
-
- .side-nav{
-     height: 50%;
-     width: 100%;
-     display: flex;
-     flex-direction: column;
  }
 
  .brand{

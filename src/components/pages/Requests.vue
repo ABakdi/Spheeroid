@@ -27,8 +27,11 @@ import {ref, reactive} from 'vue';
                  type: "incoming"
              },
          ])
+         let my_requests = true
+         let remote_requests = true
          let filtered = ref(reqs.value)
-         return {reqs, filtered}
+         let filterQuery = ''
+         return {reqs, filtered, my_requests, remote_requests}
      },
 
      components: {
@@ -37,10 +40,24 @@ import {ref, reactive} from 'vue';
      },
      methods: {
          Filter: function(e){
-             let filterQuery = e.target.value
-             this.filtered = this.reqs.filter((p)=>{
-                 return ~p.id.toLowerCase().indexOf(filterQuery) || ~p.name.toLowerCase().indexOf(filterQuery)
+             if(e.target.type == 'text')
+                 this.filterQuery = e.target.value
+
+             // filter by request type
+             let filtered = this.reqs.filter((p)=>{
+                 return !(p.type == 'incoming' && !this.remote_requests || p.type == 'outgoing' && !this.my_requests)
              })
+
+             // filter by filter query
+             // ** only if there is a query ** user typed somthing in filter input
+             if(this.filterQuery){
+                filtered = filtered.filter((p)=>{
+                    return ~p.id.toLowerCase().indexOf(this.filterQuery) || ~p.name.toLowerCase().indexOf(this.filterQuery)
+                })
+             }
+
+             this.filtered = filtered
+
          }
      },
      computed: {},
@@ -50,7 +67,17 @@ import {ref, reactive} from 'vue';
 <template>
   <div class="container">
     <div class="search-bar">
-        <input placeholder=" Filter" @input="Filter($event)" />
+        <input placeholder="Filter" @input="Filter($event)" />
+        <div class="check">
+            <div class="check-el my-req">
+                <input name="myReq" type="checkbox" :checked="my_requests" v-model="my_requests" @change="Filter($event)">
+                <label for="myReq">my requests</label>
+            </div>
+            <div class="check-el rem-req">
+                <input name="remReq" type="checkbox" :checked="remote_requests" v-model="remote_requests" @change="Filter($event)">
+                <label for="remReq">remote requests</label>
+            </div>
+        </div>
     </div>
     <div class="resaults">
         <panel class="search-resault" v-for="peer in filtered" :color="peer.type == 'incoming'? 'prime':'sec'">
@@ -93,32 +120,64 @@ import {ref, reactive} from 'vue';
   .search-bar {
       display: flex;
       flex-direction: row;
-      width: 80%;
       justify-content: space-between;
+      width: 80%;
       align-self: center;
-      flex: 1;/*FIXME: the search bar gets longer when view port width decreases*/
   }
 
-  .search-bar input {
-      min-height: 100%;
-      width: 70%;
+  .search-bar>input {
+      width: 65%;
       background-color: rgba(38, 40, 43, 1);
       border: none;
+      color: white;
+      align-self: stretch;
+      padding-left: 5px;
+  }
+
+  .search-bar>input::placeholder {
       color: rgba(95, 133, 219, 0.26);
   }
 
+ .check{
+     margin: 0 10% 0 2px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: 20%;
+ }
+ .check-el{
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+     width: 100%;
+     margin: 1px;
+ }
 
-  .resaults {
-      width: 100%;
-      padding-top: 3%;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      align-self: center;
-      width: 80%;
-      flex: 25;
-  }
+ .check-el input{
+     margin: 4px;
+     min-width: 20px;
+ }
+
+ .rem-req{
+     background-color: rgba(38, 40, 43, 0.7);
+ }
+
+ .my-req{
+     background-color: rgba(27, 35, 46, 1);
+ }
+
+
+
+ .resaults {
+     padding-top: 3%;
+     display: flex;
+     flex-direction: column;
+     justify-content: start;
+     align-items: center;
+     align-self: center;
+     width: 80%;
+     flex: 95;
+ }
 
  .search-resault{
      width: 97%; /*FIXME: use flex properties instead of fixed width*/

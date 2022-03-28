@@ -26,6 +26,9 @@
 </template>
 
 <style scoped>
+ .shell{
+     margin-bottom: 1px;
+ }
  .button{
      background-color: rgba(17, 22, 29, 0.69);
      color: rgba(95, 133, 219, 1);
@@ -35,7 +38,7 @@
      padding-left: 5%;
      filter: brightness(1.2);
      transition: background 1s, border 0.1s ease-in-out;
-     height: 99%;
+     height: 100%;
  }
 
  .button:hover{
